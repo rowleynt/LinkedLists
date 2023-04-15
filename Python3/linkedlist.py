@@ -101,6 +101,7 @@ def main():
     mylist.pop(5)
 
     print(mylist)
+    print(len(mylist))
 
     for node in mylist:
         print(node)
