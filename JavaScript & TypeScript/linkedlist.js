@@ -132,6 +132,6 @@ console.log(x)
 console.log(mylist.toString())
 console.log(mylist.length())
 
-for (let item of mylist) {
-  console.log(item)
+for (let node of mylist) {
+  console.log(node)
 }
