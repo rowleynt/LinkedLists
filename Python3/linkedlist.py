@@ -59,7 +59,6 @@ class LinkedList:
                 next_node = curr_node.next_node
                 count += 1
             prev_node.next_node = next_node
-        # TODO: edit to allow for -2, -3, etc
         elif index == -1:
             curr_node = self.head
             prev_node = None
