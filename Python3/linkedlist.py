@@ -36,6 +36,14 @@ class LinkedList:
         prev_node.next_node = new_node
         new_node.next_node = curr_node
 
+    def get(self, index: int):
+        count = 0
+        curr_node = self.head.next_node
+        while count < index:
+            curr_node = curr_node.next_node
+            count += 1
+        return curr_node.value
+
     def pop(self, index=-1):
         if index == 0:
             curr_node = self.head.next_node
@@ -87,18 +95,26 @@ class LinkedList:
 
 def main():
     mylist = LinkedList()
+    
     mylist.append(4)
     mylist.append(5)
     mylist.append(6)
     mylist.append(8)
+    
     mylist.prepend(3)
     mylist.prepend(2)
     mylist.prepend(1)
     mylist.prepend(0)
+    
     mylist.insert(7, 7)
+    
     mylist.pop()
     mylist.pop(0)
     mylist.pop(5)
+    
+    x = mylist.get(1)
+    
+    print(x)
 
     print(mylist)
     print(len(mylist))
