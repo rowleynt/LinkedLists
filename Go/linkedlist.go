@@ -6,52 +6,108 @@ package main
 
 import (
     "fmt"
+    "math"
 )
 
 type Node[T any] struct {
     value T
-    nextNode *Node[T]
+    next *Node[T]
 }
 
 type LinkedList[T any] struct {
     head, tail *Node[T]
 }
 
+// works (?)
+func (list *LinkedList[T]) append (value T) {
+    newNode := &Node[T]{ value: value }
+    if list.tail == nil {
+        list.tail = list.head
+    } else {
+        list.tail.next = newNode
+        list.tail = newNode
+    }
+}
+
+// works
 func (list *LinkedList[T]) prepend (value T) {
-    // head node is no longer a dummy node
-    // instead, head node is first node in list
     newNode := &Node[T]{ value: value }
     if list.head == nil {
         list.head = newNode
     } else {
-        currNode := list.head
+        tempNode := list.head
         list.head = newNode
-        newNode.nextNode = currNode
+        list.head.next = tempNode
+    }
+    if list.tail == nil {
+        list.tail = list.head
     }
 }
 
-// this is borked, sleep on it :)
-func (list *LinkedList[T]) append (value T) {
+func (list *LinkedList[T]) insert (value T, index int) {
+    prevNode, nextNode, _ := list.walk(index)
     newNode := &Node[T]{ value: value }
-    currNode := list.head
-    for (currNode.nextNode != nil) {
-        fmt.Println("node")
-        currNode = currNode.nextNode
-    }
-    currNode.nextNode = newNode
+    prevNode.next = newNode
+    newNode.next = nextNode
 }
 
-// append: tail isn't used anymore, need new way to add to end
+func (list *LinkedList[T]) pop (index int) {
+    if list.length() <= 0 {
+        // do nothing
+    }
+    if index == 0 {
+        list.head = list.head.next
+    } else {
+        prevNode, currNode, _ := list.walk(index)
+        prevNode.next = currNode.next
+    }
+}
+
+func (list *LinkedList[T]) get (index int) T {
+    _, currNode, _ := list.walk(index)
+    return currNode.value
+}
+
+func (list *LinkedList[T]) String() string {
+    return "fix me"
+}
+
+func (list *LinkedList[T]) length() int {
+    _, _, len := list.walk(-1)
+    return len
+}
+
+func (list *LinkedList[T]) walk (stopIndex int) (*Node[T], *Node[T], int) {
+    currNode := list.head
+    prevNode := new(Node[T])
+    count := 0
+    if stopIndex == -1 {
+        stopIndex = (int(math.Inf(1)) + 1) * -1
+    }
+    for currNode != nil && count < stopIndex {
+        prevNode = currNode
+        currNode = currNode.next
+        count++
+    }
+    return prevNode, currNode, count
+}
+
+func (list *LinkedList[T]) output () {
+    currNode := list.head
+    for currNode != nil {
+        fmt.Println(currNode.value)
+        currNode = currNode.next
+    }
+}
 
 func main() {
     mylist := new(LinkedList[int])
-    mylist.prepend(10)
-    mylist.prepend(11)
-    mylist.append(15)
-    fmt.Println(mylist.head.nextNode.value)
-    currNode := mylist.head
-    for (currNode.nextNode != nil) {
-        fmt.Println(currNode.value)
-        currNode = currNode.nextNode
-    }
+    mylist.prepend(6)
+    mylist.prepend(5)
+    mylist.prepend(4)
+    mylist.append(7)
+    mylist.insert(8, 2)
+    mylist.pop(mylist.length() - 1)
+    fmt.Println(mylist.get(0))
+    //mylist.output()
 }
