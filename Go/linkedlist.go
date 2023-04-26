@@ -1,7 +1,5 @@
 // Simple linked list using Go
 
-// Very WIP
-
 package main
 
 import (
@@ -18,18 +16,19 @@ type LinkedList[T any] struct {
     head, tail *Node[T]
 }
 
-// works (?)
 func (list *LinkedList[T]) append (value T) {
     newNode := &Node[T]{ value: value }
     if list.tail == nil {
         list.tail = list.head
+    }
+    if list.head == nil {
+        list.head = newNode
     } else {
         list.tail.next = newNode
-        list.tail = newNode
     }
+    list.tail = newNode
 }
 
-// works
 func (list *LinkedList[T]) prepend (value T) {
     newNode := &Node[T]{ value: value }
     if list.head == nil {
@@ -52,9 +51,7 @@ func (list *LinkedList[T]) insert (value T, index int) {
 }
 
 func (list *LinkedList[T]) pop (index int) {
-    if list.length() <= 0 {
-        // do nothing
-    }
+    if list.length() <= 0 {/* do nothing */}
     if index == 0 {
         list.head = list.head.next
     } else {
@@ -69,7 +66,13 @@ func (list *LinkedList[T]) get (index int) T {
 }
 
 func (list *LinkedList[T]) String() string {
-    return "fix me"
+    currNode := list.head
+    outStr := ""
+    for currNode != nil {
+        outStr += fmt.Sprintf("[%v] -> ", currNode.value)
+        currNode = currNode.next
+    }
+    return outStr[:(len(outStr) - 4)]
 }
 
 func (list *LinkedList[T]) length() int {
@@ -92,22 +95,29 @@ func (list *LinkedList[T]) walk (stopIndex int) (*Node[T], *Node[T], int) {
     return prevNode, currNode, count
 }
 
-func (list *LinkedList[T]) output () {
-    currNode := list.head
-    for currNode != nil {
-        fmt.Println(currNode.value)
-        currNode = currNode.next
-    }
-}
-
 func main() {
     mylist := new(LinkedList[int])
-    mylist.prepend(6)
-    mylist.prepend(5)
-    mylist.prepend(4)
-    mylist.append(7)
-    mylist.insert(8, 2)
+    mylist.append(4)
+    mylist.append(5)
+    mylist.append(6)
+    mylist.append(8)
+    
+    mylist.prepend(3)
+    mylist.prepend(2)
+    mylist.prepend(1)
+    mylist.prepend(0)
+    
+    mylist.insert(7, 7)
+    
     mylist.pop(mylist.length() - 1)
-    fmt.Println(mylist.get(0))
-    //mylist.output()
+    mylist.pop(0)
+    mylist.pop(5)
+    
+    x := mylist.get(1)
+    
+    fmt.Println(x)
+    fmt.Println(mylist)
+    fmt.Println(mylist.length())
+    
+    // final TODO: somehow make the list iterable
 }
