@@ -30,7 +30,7 @@ Current Working On
 
 --
 
-Planned
+Planned (not necessarily in this order)
 
 Java\
 Scala\
@@ -44,4 +44,5 @@ C#\
 Julia\
 PHP\
 Elixir\
+Lua\
 
