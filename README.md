@@ -48,5 +48,6 @@ Elixir\
 Lua\
 Groovy\
 Visual Basic\
-Dart
+Dart\
+COBOL
 
