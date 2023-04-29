@@ -46,5 +46,6 @@ Julia\
 PHP\
 Elixir\
 Lua\
-Groovy
+Groovy\
+Visual Basic
 
