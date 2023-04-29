@@ -40,9 +40,10 @@ V\
 Ruby\
 TypeScript\
 C\
+C++\
 C#\
 Julia\
 PHP\
 Elixir\
-Lua\
+Lua
 
