@@ -47,5 +47,6 @@ PHP\
 Elixir\
 Lua\
 Groovy\
-Visual Basic
+Visual Basic\
+Dart
 
