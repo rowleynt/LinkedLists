@@ -45,5 +45,6 @@ C#\
 Julia\
 PHP\
 Elixir\
-Lua
+Lua\
+Groovy
 
