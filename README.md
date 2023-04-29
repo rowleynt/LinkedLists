@@ -24,7 +24,7 @@ Completed (At least first 7 above conditions met)
 **8/8** Python3\
 **8/8** JavaScript\
 **7/8** Go\
-**7/8** Kotlin\
+**7/8** Kotlin
 
 Current Working On
 
