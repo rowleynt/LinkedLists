@@ -46,8 +46,9 @@ Julia\
 PHP\
 Elixir\
 Lua\
+Zig\
 Groovy\
 Visual Basic\
 Dart\
-COBOL
+COBOL (lol)
 
