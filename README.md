@@ -46,6 +46,7 @@ Julia\
 PHP\
 Elixir\
 Lua\
+Nelua\
 Zig\
 Groovy\
 Visual Basic\
